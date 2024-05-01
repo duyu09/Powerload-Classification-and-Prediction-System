@@ -128,6 +128,9 @@ power_column = -1  # 功率值在数据集中的字段数(-1为倒数第1个字�
 
 <img src="https://github.com/duyu09/Powerload-Classification-and-Prediction-System/assets/92843163/9eff7d69-38a4-4127-91c4-1282b4c49c84" style="width: 70%;" />
 
+### 项目展示视频
+
+<video src="https://github.com/duyu09/Powerload-Classification-and-Prediction-System/assets/92843163/0684486d-e391-4301-834f-0c5af6e6ce90" style="width: 65%;"></video>
 
 ### 著作权声明
 
