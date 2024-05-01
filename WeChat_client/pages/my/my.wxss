@@ -1,0 +1,61 @@
+/* pages/my/my.wxss */
+.content{
+  height: 100%;
+  padding-bottom: 200rpx;
+}
+.form{
+  border-radius: 20px;
+  overflow: hidden;
+  width: 90%;
+  background-color: white;
+  border: 0.5px solid gray;
+  margin: 40rpx auto;
+}
+.show-image{
+  height: 300rpx;
+  background-color: gray;
+}
+image{
+  height: 100%;
+  width: 100%;
+}
+.info{
+  padding-bottom: 30rpx;
+}
+.form-address{
+  font-weight: 600;
+  font-size: 40rpx;
+  padding-top: 30rpx;
+  padding-left: 30rpx;
+}
+.form-item{
+  color: gray;
+  font-size: 32rpx;
+  padding-top: 20rpx;
+  padding-left: 30rpx;
+}
+
+.index-show{
+  width:100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-left:50rpx;
+  
+}
+.index-show-data{
+  width:100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  margin-left:50rpx;
+  
+}
+.space-item{
+  margin-left:50rpx;
+  margin-top: 20rpx;
+}
+.btn{
+  margin: 10rpx;
+  padding: 0 20rpx;
+}

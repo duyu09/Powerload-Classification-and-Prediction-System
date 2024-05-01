@@ -1,0 +1,58 @@
+.logo{
+  border-top: 1px #f2f2f2 solid;
+  padding: 10px 0;
+  text-align: center;
+}
+.logo image{
+  width: 300rpx;
+  height: 240rpx;
+}
+.tab-h{
+  height: 80rpx;width: 100%; box-sizing: border-box;overflow: hidden;line-height: 80rpx;background: #F7F7F7; font-size: 16px; white-space: nowrap;position: fixed;top: 340rpx; left: 0; z-index: 99;}
+.tab-item{margin:0 106rpx;display: inline-block;}
+.tab-item.active{color: #4675F9;position: relative;}
+.tab-item.active:after{ content: "";display: block;height: 8rpx;width: 52rpx;background: #4675F9;position: absolute; bottom: 0;left: 5rpx;border-radius: 16rpx;}
+.item-ans{ width: 100%;display: flex; flex-grow: row no-wrap;justify-content: space-between; padding: 30rpx;box-sizing: border-box; height: 180rpx;align-items: center;border-bottom: 1px solid #F2F2F2;}
+
+.tab-content{margin-top: 140rpx;}
+.scoll-h{height: 80%;}
+.login-txt{
+  background: #faf8f6;
+  font-size: 40rpx;
+  text-align: center;
+  color:#333;
+  /* padding: 15rpx; */
+  width: 400rpx;
+  height: 170prx;
+}
+.login-form image{
+  width: 50rpx;
+  height: 50rpx;
+}
+.login-form-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 140rpx;
+  margin-right: 140rpx;
+  margin-top: 35rpx;
+  border-bottom: 1px solid gray;
+}
+.login-btn{
+  background: #1E90FF;
+  border: 0;
+  color: #fff;
+  font-size: 30rpx;
+  padding: 15rpx;
+  margin: 100rpx 20rpx 20rpx 20rpx;
+}
+.forget-reg{
+  font-size: 24rpx;
+  color: #1E90FF;
+  margin-left: 350rpx;
+  margin-top: 100rpx;
+  width: 370rpx;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+}

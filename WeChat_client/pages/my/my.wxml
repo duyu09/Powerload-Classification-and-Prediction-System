@@ -1,0 +1,30 @@
+<!--pages/my/my.wxml-->
+<view class="form">
+  <view class="show-image">
+    <image src="../../images/个人信息.jpg" mode="aspectFill" />
+  </view>
+  <view class="info">
+    <view class="form-address"><text class="address">用户：{{username}}</text></view>
+  </view>
+  <view class="btn">
+    <button bindtap="eraseInfo" type="primary" size="mini">退出登录</button>
+  </view>
+</view>
+
+
+
+<!-- <view class="index-show">
+  <view>电冰箱</view>
+</view>
+<view class="index-show-data">
+  <text class="text-left"> power：</text>
+  <text class="text-right">{{text[0].frpower}}</text>
+</view>
+<view class="index-show-data">
+  <text class="text-left"> current：</text>
+  <text class="text-right">{{text[0].frpower}}</text>
+</view>
+<view class="index-show-data">
+  <text class="text-left"> voltage：</text>
+  <text class="text-right">{{text[0].frpower}}</text>
+</view> -->

@@ -1,0 +1,45 @@
+.logo{
+  border-top: 1px #f2f2f2 solid;
+  padding: 10px 0;
+  text-align: center;
+}
+.logo image{
+  width: 300rpx;
+  height: 240rpx;
+}
+
+.tab-item{margin:0 152rpx;display: inline-block;}
+.tab-content{margin-top: 140rpx;}
+.login-txt{
+  background: #faf8f6; 
+  font-size: 40rpx;
+  text-align: center;
+  color:#333;
+  /* padding: 15rpx; */
+  width: 400rpx;
+  height: 170prx;
+}
+
+.login-form-row image{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.login-form-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 140rpx;
+  margin-right: 140rpx;
+  margin-top: 35rpx;
+  border-bottom: 1px solid grey;
+}
+.login-btn{
+  background: #1E90FF;
+  border: 0;
+  color: #fff;
+  font-size: 30rpx;
+  padding: 15rpx;
+  margin: 100rpx 20rpx 20rpx 20rpx;
+}
+
