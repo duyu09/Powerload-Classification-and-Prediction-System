@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/dist-detail/dist-detail",
+    "pages/dist/dist",
+    "pages/register/register",
+    "pages/index/index",
+    "pages/my/my",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "custom": true,
+    "selectedColor": "#f60",
+    "list": [
+      {
+        "pagePath": "pages/dist/dist",
+        "text": "列表"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "个人"
+      },
+      {
+        "pagePath": "pages/login/login",
+        "text": "登录"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
