@@ -32,20 +32,9 @@
 
 - **前端与后端设计：** 我们主要使用了微信开发者工具进行前端开发，波形绘制使用了ECharts库中提供的折线图组件。前台轮询查询数据。为提高性能，后端程序使用C++17构建Server，其基于单Reactor多线程架构。服务器系统核心由日志记录、线程池管理、IO多路复用、HTTP处理、缓冲区管理和阻塞队列等模块组成。HTTP请求报文通过分散读方式读入，并利用有限状态机与正则表达式进行高效解析。
 
-<table>
-  <thead>
-    <tr>
-      <th>模型工作流图</th>
-      <th>系统宏观架构</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><img src="https://github.com/duyu09/Powerload-Classification-and-Prediction-System/assets/92843163/94326052-6266-42b5-b519-80ea3f5eb622" style="width: 65%;"/></td>
-      <td><img src="https://github.com/duyu09/Powerload-Classification-and-Prediction-System/assets/92843163/246ece1e-53d2-4eaf-9263-dbed7752608b" style="width: 65%;"/></td>
-    </tr>
-  </tbody>
-</table>
+| 模型工作流图 | 系统宏观架构 |
+| ------ | ------ |
+| <img src="https://github.com/duyu09/Powerload-Classification-and-Prediction-System/assets/92843163/94326052-6266-42b5-b519-80ea3f5eb622" style="width: 65%;"/> | <img src="https://github.com/duyu09/Powerload-Classification-and-Prediction-System/assets/92843163/246ece1e-53d2-4eaf-9263-dbed7752608b" style="width: 65%;"/> |
 
 ### 模型详细设计
 
@@ -84,6 +73,7 @@ make
 - **模型训练：** 确保`dataset`目录存在于`Python_backend`目录下，`dataset`目录中包含若干`CSV`文件，该文件的文件名应为标签名(对应电器或电器组合的名称)。
   
 执行以下命令可以分别训练分类分解模型(用时：CPU环境3分钟左右)与数值预测模型(用时：CPU环境2小时左右)。
+
 ```bash
 Python ./classify/Classification_Train_v6.3.py
 Python ./classify/prediction.py
@@ -91,7 +81,8 @@ Python ./classify/prediction.py
 
 可以根据数据集特点与其他情况，自行调整超参数，修改代码：
 
-  - 数值预测模型训练代码(`prediction.py`)中，以下位置的代码可能需要改动：
+数值预测模型训练代码(`prediction.py`)中，以下位置的代码可能需要改动：
+
 ```python
 # 下列代码位于主函数
 batches, labels_batched, categories, category2filename_dict = data_process("./dataset")
@@ -103,7 +94,8 @@ torch.save(model, "model-large.pt")
 data = get_data(os.path.join(directory, filename + ".csv"), skip_header=1, usecol=4)
 ```
 
-  - 分类分解模型训练代码(`Classification_Train_v6.3.py`)中，以下位置的代码可能需要改动：
+分类分解模型训练代码(`Classification_Train_v6.3.py`)中，以下位置的代码可能需要改动：
+
 ```python
 # 下列代码位于文件开头处
 dc = r'../dataset'  # 读取该目录下的所有CSV文件
@@ -134,38 +126,38 @@ power_column = -1  # 功率值在数据集中的字段数(-1为倒数第1个字�
 
 ### 著作权声明
 
-Copyright © 2024 The research and development group for Power Load Classification and Prediction System Based on Deep Learning Algorithm, Faculty of Computer Science & Technology, Qilu University of Technology (Shandong Academy of Sciences).
+Copyright © 2024 _The research and development group for Power Load Classification and Prediction System Based on Deep Learning Algorithm, Faculty of Computer Science & Technology, Qilu University of Technology (Shandong Academy of Sciences)_ .
 
 齐鲁工业大学（山东省科学院）计算机科学与技术学部 “基于深度学习算法的电力负载分类与预测系统项目”研究与开发小组 保留所有权利。
 
 - 研究与开发小组成员名单：
-  - 杜宇 Yu DU (齐鲁工业大学（山东省科学院）计算机科学与技术学部, No.202103180009)
-  - 姜川 Chuan JIANG (齐鲁工业大学（山东省科学院）计算机科学与技术学部, No.202103180020)
-  - 李晓语 Xiaoyu LI (齐鲁工业大学（山东省科学院）计算机科学与技术学部, No.202103180001)
-  - 李庆隆 Qinglong LI (齐鲁工业大学（山东省科学院）计算机科学与技术学部, No.202103180027)
-  - 张一雯 Yiwen ZHANG (齐鲁工业大学（山东省科学院）计算机科学与技术学部, No.202103180051)
+  - 杜宇 _Yu DU_ (齐鲁工业大学（山东省科学院）计算机科学与技术学部, No.202103180009)
+  - 姜川 _Chuan JIANG_ (齐鲁工业大学（山东省科学院）计算机科学与技术学部, No.202103180020)
+  - 李晓语 _Xiaoyu LI_ (齐鲁工业大学（山东省科学院）计算机科学与技术学部, No.202103180001)
+  - 李庆隆 _Qinglong LI_ (齐鲁工业大学（山东省科学院）计算机科学与技术学部, No.202103180027)
+  - 张一雯 _Yiwen ZHANG_ (齐鲁工业大学（山东省科学院）计算机科学与技术学部, No.202103180051)
 - 指导教师：
-  - 贾瑞祥老师 Ruixiang JIA (齐鲁工业大学（山东省科学院）计算机科学与技术学部, 软件工程系讲师)
-  - 陈静老师 Jing CHEN (山东省计算中心（国家超级计算济南中心）)
+  - 贾瑞祥老师 _Ruixiang JIA_ (齐鲁工业大学（山东省科学院）计算机科学与技术学部, 软件工程系讲师)
+  - 陈静老师 _Jing CHEN_ (山东省计算中心（国家超级计算济南中心）)
 
 本项目基于我们自定义的开源协议(许可证)开放源代码，在您通过任何方式获得源代码前，请仔细阅读并充分理解许可证的全部内容。许可证文件为LICENSE文件[https://github.com/duyu09/Powerload-Classification-and-Prediction-System/blob/main/LICENSE]
 
 - 其它说明：
-  - **本项目已参加2024年第17届中国大学生计算机设计大赛4C2024人工智能实践赛赛道。**
+  - **本项目已参加2024年第17届中国大学生计算机设计大赛 _4C2024_ 人工智能实践赛赛道。**
   - 本项目的LOGO由智谱清言`CogView`AI绘图工具绘制，用作LOGO时有修改。LOGO寓意：主体金属环象征仪表盘，我们的项目是非侵入式电力监测系统；环内的条纹象征着电力数据波形，同时它也可看作是城市里林立的高楼大厦，象征着我们的系统可以服务于城市电力系统的运转；背景是木制桌面，象征着我们的系统助力绿色发展、减少碳排放。
 
 ### 特别感谢
 
-- <b>齐鲁工业大学 (山东省科学院).</b> (<b>Qilu University of Technology (Shandong Academy of Sciences).</b>)
+- <b>齐鲁工业大学 (山东省科学院).</b> (<b> _Qilu University of Technology (Shandong Academy of Sciences)_ </b>)
 
 <img src="https://user-images.githubusercontent.com/92843163/229986960-05c91bf5-e08e-4bd3-89a4-deee3d2dbc6d.svg" style="width:40%;border-radius:20px;">
 
-- <b>计算机科学与技术学部 山东省计算中心(国家超级计算济南中心).</b> (<b>Faculty of Computer Science and Technology. National Supercomputing Center in Jinan.</b>)
+- <b>计算机科学与技术学部 山东省计算中心(国家超级计算济南中心).</b> (<b> _Faculty of Computer Science and Technology. National Supercomputing Center in Jinan_ </b>)
 
 <img src="https://github.com/duyu09/Intelligent-Learning-Platform/assets/92843163/3a31a937-804f-4230-9585-b437430ac950" style="width:40%;border-radius:20px;">
 <br><br>
 
-<b>齐鲁工业大学 (山东省科学院) 开发者协会.</b> (<b>Developer Association of Qilu University of Technology (Shandong Academy of Sciences).</b>)
+- <b>齐鲁工业大学 (山东省科学院) 开发者协会.</b> (<b> _Developer Association of Qilu University of Technology (Shandong Academy of Sciences)_ </b>)
 
 <img src="https://github.com/duyu09/Intelligent-Learning-Platform/assets/92843163/7a554ca6-49b8-4099-b214-4c4ceff7c9a3" style="width:40%;border-radius:20px;">
 
@@ -185,5 +177,5 @@ Copyright © 2024 The research and development group for Power Load Classificati
 
 <div><b>Number of Total Visits (All of Duyu09's GitHub Projects): </b><br><img src="https://profile-counter.glitch.me/duyu09/count.svg" /></div> 
 
-<div><b>Number of Total Visits (基于深度学习算法的电力负载分类与预测系统 <i><b>PLDA</b></i>): 
-</b><br><img src="https://profile-counter.glitch.me/duyu09-PLDA-SYSTEM/count.svg" /></div> 
+<div><b>Number of Total Visits (基于深度学习算法的电力负载分类与预测系统PLDA): </b>
+<br><img src="https://profile-counter.glitch.me/duyu09-PLDA-SYSTEM/count.svg" /></div> 
