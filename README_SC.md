@@ -11,7 +11,7 @@
 
 #### 文档语言
 
-[**English**](https://github.com/duyu09/Powerload-Classification-and-Prediction-System/blob/main/README.md) | [**简体中文**](https://github.com/duyu09/Powerload-Classification-and-Prediction-System/blob/main/README_SC.md)
+[**English**](https://github.com/duyu09/Powerload-Classification-and-Prediction-System/blob/main/README.md) | [**简体中文**](https://github.com/duyu09/Powerload-Classification-and-Prediction-System/blob/main/README_SC.md) | [**Tiếng Việt**](https://github.com/duyu09/Powerload-Classification-and-Prediction-System/blob/main/README_VN.md)
 
 ### 项目简介
 
