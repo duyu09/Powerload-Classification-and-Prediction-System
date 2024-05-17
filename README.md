@@ -4,15 +4,14 @@
 </p>
 <br>
 
-<h2>
-  Power Load Classification and Prediction System Based on Deep Learning Algorithms
-  <br>
-  基于深度学习算法的电力负载分类与预测系统
-</h2>
+
+# Power Load Classification and Prediction System Based on Deep Learning Algorithms
 
 #### Language of This Document
 
-[**English**](https://github.com/duyu09/Powerload-Classification-and-Prediction-System/blob/main/README.md) | [**简体中文**](https://github.com/duyu09/Powerload-Classification-and-Prediction-System/blob/main/README_SC.md)
+[**English**](https://github.com/duyu09/Powerload-Classification-and-Prediction-System/blob/main/README.md) | [**简体中文**](https://github.com/duyu09/Powerload-Classification-and-Prediction-System/blob/main/README_SC.md) | [**Tiếng Việt**](https://github.com/duyu09/Powerload-Classification-and-Prediction-System/blob/main/README_VN.md)
+
+_This document was translated by OpenAI's ChatGPT-4o model and is for reference only. Please refer to the Simplified Chinese version as the authoritative source._
 
 ### Project Overview
 
