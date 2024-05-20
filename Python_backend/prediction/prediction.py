@@ -1,7 +1,7 @@
 # __encoding: utf-8 __
 """
-@Version  : 2.0.0
-@Time     : 2024年04月15日 (最近修改：2024年04月25日)
+@Version  : 2.1.0
+@Time     : 2024年04月15日 (最近修改：2024年05月20日)
 @Author   : 杜宇 (DuYu, @Duyu09, qluduyu09@163.com)
 @File     : prediction.py
 @Desc     : 电力负载预测模型的训练、测试与使用代码。
@@ -20,6 +20,7 @@ from math import sqrt
 from tqdm import tqdm
 from torch import nn, optim
 from matplotlib import pyplot as plt
+from torch.cuda.amp import GradScaler, autocast
 
 # 全局变量与超参数
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # 设置训练及推理设备
@@ -40,15 +41,16 @@ def printlog(string: object) -> None:
 class TransformerBlock(nn.Module):
     def __init__(self, embed_size, num_heads, drop_prob=transformer_block_drop_prob):
         super(TransformerBlock, self).__init__()
-        self.attention = nn.MultiheadAttention(embed_size, num_heads, batch_first=True)
-        self.fc = nn.Sequential(nn.Linear(embed_size, 4 * embed_size),
+        self.attention = nn.MultiheadAttention(embed_size, num_heads, batch_first=True, device=device)
+        self.fc = nn.Sequential(nn.Linear(embed_size, 4 * embed_size, device=device),
                                 nn.LeakyReLU(),
-                                nn.Linear(4 * embed_size, embed_size))
+                                nn.Linear(4 * embed_size, embed_size, device=device))
         self.dropout = nn.Dropout(drop_prob)
-        self.ln1 = nn.LayerNorm(embed_size, eps=1e-5)
-        self.ln2 = nn.LayerNorm(embed_size, eps=1e-5)
+        self.ln1 = nn.LayerNorm(embed_size, eps=1e-5, device=device)
+        self.ln2 = nn.LayerNorm(embed_size, eps=1e-5,device=device)
 
     def forward(self, x):
+        x = x.float()
         attn_out, _ = self.attention(x, x, x, need_weights=False)
         x = x + self.dropout(attn_out)
         x = self.ln1(x)
@@ -68,7 +70,7 @@ def get_data(filename: str, skip_header=1, usecol=0) -> np.ndarray:
     :param usecol: 有效数据位于的列号。
     :return: (ndarray) 形状：(大约为数据长度,) 返回读到并处理后的全部数据数组。
     """
-    data = np.genfromtxt(filename, delimiter=',', skip_header=skip_header, usecols=[usecol])
+    data = np.genfromtxt(filename, delimiter=',', skip_header=skip_header, usecols=[usecol], encoding="gbk")
     data = np.nan_to_num(data, nan=0, posinf=np.nanmax(data), neginf=np.nanmin(data))
     data[data < 0] = 0
     nonzero_indices = np.nonzero(data)
@@ -165,12 +167,13 @@ class transformer_forecaster(nn.Module):
                                            nn.LeakyReLU(),
                                            nn.Dropout(transformer_forecaster_drop_prob),
                                            nn.Linear(2 * feature_vector_len, feature_vector_len - static_vector_len)
-                                           )
-        self.emb = nn.Embedding(total_number_categories, static_vector_len - 5)
+                                           ).to(device=device)
+        self.emb = nn.Embedding(total_number_categories, static_vector_len - 5, device=device)
         self.category2filename_dict = category2filename_dict
 
     def forward(self, x, category, static_vector_len=7):
-        emb_out = self.emb(torch.IntTensor([category]))[0]
+        emb_tensor = torch.tensor([category], device=device).int()
+        emb_out = self.emb(emb_tensor)[0]
         emb_out = emb_out.unsqueeze(0).unsqueeze(0).expand(x.shape[0], x.shape[1], static_vector_len - 5)
         x = torch.cat((x, emb_out), dim=2)
         for block in self.blocks:
@@ -183,7 +186,7 @@ class transformer_forecaster(nn.Module):
 
 # 注：categories是一个一维数组，里面存储的是整数，长度是批次数量(=batches.shape[0])，用于标定当前批电器的种类。
 def train(batches: np.ndarray, labels_batched: np.ndarray, categories: list[int], category2filename_dict: dict, num_heads=5, num_blocks=5, lr=0.0001, epochs=6,
-          static_vector_len=7, total_number_categories=28) -> nn.Module:
+          static_vector_len=7, total_number_categories=28, using_mpt=False) -> nn.Module:
     """
     函数功能：模型训练。
     :param batches: 经过批处理后的4维特征数据向量，形状：(批次数, 每批的帧数【batch_size】, 每帧的窗数, 每窗的特征向量维度)
@@ -196,8 +199,10 @@ def train(batches: np.ndarray, labels_batched: np.ndarray, categories: list[int]
     :param epochs: 迭代次数。标量，整数。
     :param static_vector_len: 静态特征(稳态特征)向量长度，包括了5个固定特征与n=2个词嵌入向量维度。标量，整数。
     :param total_number_categories: 电器类别总数。标量，整数。
+    :param using_mpt: 是否使用混合精度训练(MPT)。布尔值。（注意：当显卡支持MPT时才可启用，否则可能会报错。Volta和Ampere架构的GPU都可以。）
     :return: PyTorch模型对象。
     """
+    printlog("使用混合精度训练" if using_mpt else "未开启混合精度训练")
     printlog("开始模型训练")
     model = transformer_forecaster(batches.shape[-1] + (static_vector_len - 5), num_heads, num_blocks,
                                    category2filename_dict=category2filename_dict, static_vector_len=static_vector_len,
@@ -205,21 +210,39 @@ def train(batches: np.ndarray, labels_batched: np.ndarray, categories: list[int]
     criterion = nn.L1Loss()
     optimizer = optim.Adam(model.parameters(), lr=lr)  # 使用SGD或ADAM算法
     model.train()
-    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=50, gamma=0.5)
+    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=45, gamma=0.41)
+    if using_mpt:
+        scaler = GradScaler()
+        use_amp = True
+    else:
+        scaler = None
+        use_amp = False
+    batches, labels_batched = torch.tensor(batches, device=device), torch.tensor(labels_batched, device=device)
     # Training loop
     for epoch in range(epochs):
         train_loss = 0
         counter = 0
-        for batch_num in tqdm(range(batches.shape[0]), mininterval=1.0, file=sys.stdout):
-            tensor_train, label_train = torch.Tensor(batches[batch_num], device=device), torch.Tensor(
-                labels_batched[batch_num], device=device)
-            pred = model(tensor_train, categories[batch_num], static_vector_len=static_vector_len)
-            loss = criterion(pred, label_train)
+        for batch_num in tqdm(range(batches.shape[0]), mininterval=2, file=sys.stdout):
+            tensor_train, label_train = batches[batch_num], labels_batched[batch_num]
+            optimizer.zero_grad()
+            
+            if use_amp:
+                with autocast():
+                    pred = model(tensor_train, categories[batch_num], static_vector_len=static_vector_len)
+                    loss = criterion(pred, label_train)
+            else:
+                pred = model(tensor_train, categories[batch_num], static_vector_len=static_vector_len)
+                loss = criterion(pred, label_train)
+            if use_amp:
+                scaler.scale(loss).backward()
+                scaler.step(optimizer)
+                scaler.update()
+            else:
+                loss.backward()
+                optimizer.step()
             train_loss += loss.item()
             counter += 1
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
+
         train_loss = train_loss / counter
         scheduler.step()
         print(f'\nEpoch {epoch + 1} training loss: {train_loss}')
@@ -400,7 +423,7 @@ def data_process(directory: str) -> tuple[np.ndarray, np.ndarray, list, dict]:
     categories: 表示每批中电器类型的数字编码，一维列表list，形状：(批次数,)；元素均为整数。
     category2filename_dict: 表示电器分类数字编码与电器文本描述映射关系的字典。字典，键：电器类型数字编码；值：文本描述（如：“热水器”）
     """
-    printlog("正在进行数据预处理")
+    printlog("开始数据预处理")
     data_tensor_arr, label_tensor_arr, category_arr = [], [], []
     category2filename_dict = read_csv_files(directory=directory)
     for index in tqdm(category2filename_dict):
@@ -423,22 +446,25 @@ def data_process(directory: str) -> tuple[np.ndarray, np.ndarray, list, dict]:
 
 
 if __name__ == "__main__":
+    printlog("正在使用设备：" + str(device).upper())
+    
     # 模型训练：
     batches, labels_batched, categories, category2filename_dict = data_process("./dataset")
-    model = train(batches, labels_batched, categories, category2filename_dict, num_heads=27, num_blocks=6, lr=0.00004, epochs=13, static_vector_len=7, total_number_categories=21)
+    model = train(batches, labels_batched, categories, category2filename_dict, num_heads=27, num_blocks=10, lr=0.0000325, epochs=35, static_vector_len=7, total_number_categories=21)
     torch.save(model, "model-large.pt")
+    printlog("训练完成，模型权重已成功保存。")
 
     # 模型使用：
-    model = torch.load("model-large.pt")
-    data = get_data("./dataset/热水壶+电磁炉.csv", usecol=4)[50:140]
-    data_train, data_test = data[:-20], data[-20:]
-    pred = usage(model, data_train, "热水壶+电磁炉")
+    # model = torch.load("model-large.pt", map_location=torch.device(device=device))
+    # data = get_data("./dataset/热水壶+电磁炉.csv", usecol=4)[50:140]
+    # data_train, data_test = data[:-20], data[-20:]
+    # pred = usage(model, data_train, "热水壶+电磁炉")
 
-    x_test = range(len(data))
-    x_pred = range(len(data) - len(data_test), len(data) + 1)
-    plt.plot(x_test, data, label='y_test')
-    plt.plot(x_pred, pred, label='y_pred')
-    plt.title('Two Lines Plot')
-    plt.legend()
-    plt.show()
+    # x_test = range(len(data))
+    # x_pred = range(len(data) - len(data_test), len(data) + 1)
+    # plt.plot(x_test, data, label='y_test')
+    # plt.plot(x_pred, pred, label='y_pred')
+    # plt.title('Two Lines Plot')
+    # plt.legend()
+    # plt.show()
 
