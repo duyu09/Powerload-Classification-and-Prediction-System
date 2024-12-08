@@ -1,0 +1,753 @@
+1
+00:00:00,766 --> 00:00:03,650
+Respected judges and dear classmates, hello everyone!
+
+2
+00:00:03,966 --> 00:00:05,083
+Our project is
+
+3
+00:00:05,083 --> 00:00:06,883
+a non-intrusive power load classification 
+
+4
+00:00:06,883 --> 00:00:10,200
+and prediction system based on deep learning algorithms.
+
+5
+00:00:10,866 --> 00:00:13,883
+Next, I will provide a detailed explanation of our project.
+
+6
+00:00:15,600 --> 00:00:17,200
+Our team divided tasks rationally
+
+7
+00:00:17,200 --> 00:00:18,966
+and collaboratively completed this project.
+
+8
+00:00:19,200 --> 00:00:22,883
+I will introduce the system from the following aspects.
+
+9
+00:00:23,283 --> 00:00:25,933
+First, let’s talk about the motivation behind the design.
+
+10
+00:00:26,683 --> 00:00:29,483
+Non-intrusive load monitoring (NILM) methods refer to 
+
+11
+00:00:29,483 --> 00:00:32,200
+analyzing overall electricity usage data
+
+12
+00:00:32,200 --> 00:00:33,883
+without monitoring specific devices,
+
+13
+00:00:33,883 --> 00:00:37,083
+to infer and predict the electricity consumption of individual appliances.
+
+14
+00:00:37,600 --> 00:00:38,800
+As shown on the right,
+
+15
+00:00:38,966 --> 00:00:41,083
+the system does not require sensors to be installed 
+
+16
+00:00:41,083 --> 00:00:42,333
+on each appliance’s power line.
+
+17
+00:00:42,483 --> 00:00:45,483
+Instead, it analyzes household electricity data 
+
+18
+00:00:45,600 --> 00:00:48,166
+to estimate the usage of each device
+
+19
+00:00:48,483 --> 00:00:51,133
+and predict the total power consumption in the near future.
+
+20
+00:00:53,000 --> 00:00:55,450
+So, why is this technology necessary?
+
+21
+00:00:55,566 --> 00:00:57,533
+Investigations by national authorities reveal that
+
+22
+00:00:57,650 --> 00:00:59,683
+both in China and globally,
+
+23
+00:00:59,733 --> 00:01:01,800
+standby and unnecessary power consumption
+
+24
+00:01:01,800 --> 00:01:04,766
+are increasingly leading to electricity waste.
+
+25
+00:01:05,083 --> 00:01:07,800
+Moreover, with the rise of smart grid technology,
+
+26
+00:01:07,966 --> 00:01:10,600
+cost-effective non-intrusive detection systems
+
+27
+00:01:10,766 --> 00:01:14,050
+meet the needs of both electricity users and suppliers.
+
+28
+00:01:14,966 --> 00:01:16,683
+Additionally, non-intrusive systems
+
+29
+00:01:16,683 --> 00:01:19,400
+do not require complex sensor hardware support,
+
+30
+00:01:19,683 --> 00:01:22,166
+making them low-cost, highly reliable,
+
+31
+00:01:22,166 --> 00:01:23,450
+and easily acceptable to users.
+
+32
+00:01:24,133 --> 00:01:26,283
+This technology also has numerous advantages,
+
+33
+00:01:26,283 --> 00:01:27,450
+which, due to time constraints,
+
+34
+00:01:27,450 --> 00:01:28,966
+I won’t elaborate on here.
+
+35
+00:01:29,733 --> 00:01:32,333
+Furthermore, the computational power for our system
+
+36
+00:01:32,366 --> 00:01:35,533
+is provided by the National Supercomputing Sunway Platform,
+
+37
+00:01:35,850 --> 00:01:38,800
+in response to the government’s call to vigorously develop the digital economy.
+
+38
+00:01:39,000 --> 00:01:41,333
+It is a vivid example of bringing computing power 
+
+39
+00:01:41,450 --> 00:01:44,083
+to households and empowering various industries.
+
+40
+00:01:45,450 --> 00:01:49,083
+In summary, whether for ordinary households or industrial factories,
+
+41
+00:01:49,200 --> 00:01:51,733
+there is an urgent need for an intelligent system and algorithm 
+
+42
+00:01:51,766 --> 00:01:54,650
+to monitor the real-time operational status of appliances,
+
+43
+00:01:54,800 --> 00:01:56,683
+identify unnecessary power consumption,
+
+44
+00:01:57,483 --> 00:01:59,283
+and help save energy
+
+45
+00:01:59,283 --> 00:02:00,800
+and reduce electricity costs.
+
+46
+00:02:01,800 --> 00:02:04,650
+The system should also be capable of predicting short-term electricity consumption,
+
+47
+00:02:04,983 --> 00:02:08,483
+enabling companies to plan their electricity usage more scientifically.
+
+48
+00:02:09,200 --> 00:02:12,366
+This is especially important under a tiered electricity pricing mechanism.
+
+49
+00:02:13,133 --> 00:02:14,250
+For this purpose, our system
+
+50
+00:02:14,250 --> 00:02:16,933
+mainly includes classification and prediction functionalities.
+
+51
+00:02:17,200 --> 00:02:18,650
+The classification function
+
+52
+00:02:18,650 --> 00:02:20,083
+can inform users in real time 
+
+53
+00:02:20,133 --> 00:02:22,133
+about the operational status of each appliance.
+
+54
+00:02:22,450 --> 00:02:24,183
+The prediction function can estimate 
+
+55
+00:02:24,250 --> 00:02:27,533
+users' short-term future electricity consumption.
+
+56
+00:02:28,200 --> 00:02:30,133
+Second, algorithm design.
+
+57
+00:02:30,200 --> 00:02:33,000
+Our system adopts a cascaded model architecture,
+
+58
+00:02:33,050 --> 00:02:35,250
+which includes a classification module 
+
+59
+00:02:35,283 --> 00:02:36,800
+and a numerical prediction module.
+
+60
+00:02:37,083 --> 00:02:38,083
+Input data
+
+61
+00:02:38,133 --> 00:02:41,566
+is first processed with the classification module for labeling,
+
+62
+00:02:41,733 --> 00:02:42,533
+after which 
+
+63
+00:02:42,533 --> 00:02:46,766
+the data and its labels are input into the numerical prediction module
+
+64
+00:02:46,883 --> 00:02:49,333
+to generate the final power prediction value.
+
+65
+00:02:50,733 --> 00:02:53,050
+Next, I will introduce them individually.
+
+66
+00:02:53,250 --> 00:02:55,133
+Here is the classification model diagram.
+
+67
+00:02:55,483 --> 00:02:58,400
+First, the input data undergoes windowing processing.
+
+68
+00:02:58,533 --> 00:03:00,850
+Then, power values are grouped.
+
+69
+00:03:01,250 --> 00:03:03,883
+Next, the number of samples 
+
+70
+00:03:03,933 --> 00:03:05,800
+falling into each group is counted for each time window,
+
+71
+00:03:05,800 --> 00:03:07,366
+yielding a frequency distribution.
+
+72
+00:03:08,200 --> 00:03:09,766
+To obtain feature vectors,
+
+73
+00:03:09,766 --> 00:03:11,933
+we normalize the frequency of each time window 
+
+74
+00:03:12,000 --> 00:03:13,683
+by dividing by the window length.
+
+75
+00:03:13,850 --> 00:03:15,200
+Finally, we use a fully connected neural network 
+
+76
+00:03:15,600 --> 00:03:18,533
+to input a matrix composed of the feature vectors from the time windows
+
+77
+00:03:18,733 --> 00:03:21,566
+and output the one-hot encoding of the corresponding appliance category.
+
+78
+00:03:26,733 --> 00:03:28,050
+During these computations,
+
+79
+00:03:28,050 --> 00:03:30,166
+we adopted shorter window lengths 
+
+80
+00:03:30,250 --> 00:03:32,450
+and more power value groups.
+
+81
+00:03:32,883 --> 00:03:34,683
+According to Dirichlet's principle,
+
+82
+00:03:34,733 --> 00:03:37,533
+only a few samples will fall into certain groups,
+
+83
+00:03:37,683 --> 00:03:40,650
+resulting in a very sparse feature matrix
+
+84
+00:03:40,683 --> 00:03:42,850
+that cannot be directly input into a neural network.
+
+85
+00:03:43,283 --> 00:03:46,533
+It needs to be compressed using the principal component analysis (PCA) algorithm.
+
+86
+00:03:47,050 --> 00:03:49,733
+The algorithm retains 96% of the variance,
+
+87
+00:03:49,933 --> 00:03:54,200
+effectively compressing 660-dimensional features into 17 dimensions,
+
+88
+00:03:54,800 --> 00:03:57,733
+transforming the feature matrix into a dense matrix.
+
+89
+00:03:58,800 --> 00:04:00,000
+When selecting the model,
+
+90
+00:04:00,000 --> 00:04:03,250
+we compared the performance of a fully connected network and GRU 
+
+91
+00:04:03,283 --> 00:04:05,133
+(Gated Recurrent Unit).
+
+92
+00:04:05,450 --> 00:04:07,333
+After tuning the hyperparameters,
+
+93
+00:04:07,483 --> 00:04:11,000
+both achieved maximum accuracies of 91% and 90%,
+
+94
+00:04:11,000 --> 00:04:12,366
+respectively.
+
+95
+00:04:13,050 --> 00:04:14,766
+However, the testing phase revealed
+
+96
+00:04:14,966 --> 00:04:17,650
+that GRU, due to its need to attend to multiple time windows,
+
+97
+00:04:17,800 --> 00:04:20,566
+consumes significantly more inference power than fully connected networks.
+
+98
+00:04:20,650 --> 00:04:22,166
+Thus, we opted for the latter.
+
+99
+00:04:22,933 --> 00:04:25,483
+Next, I will elaborate on the power prediction model.
+
+100
+00:04:25,483 --> 00:04:27,400
+The right diagram shows power waveforms
+
+101
+00:04:27,400 --> 00:04:29,683
+of the same appliance across different time spans.
+
+102
+00:04:30,166 --> 00:04:33,400
+Data exhibits strong patterns on a macro scale,
+
+103
+00:04:34,250 --> 00:04:36,600
+yet appears entirely erratic on a micro scale.
+
+104
+00:04:37,133 --> 00:04:39,683
+This is due to numerous external uncertainties,
+
+105
+00:04:39,733 --> 00:04:42,566
+which pose challenges for short-term power prediction.
+
+106
+00:04:43,800 --> 00:04:45,366
+To address this problem,
+
+107
+00:04:45,366 --> 00:04:47,650
+we designed the following model architecture.
+
+108
+00:04:47,733 --> 00:04:49,083
+During data processing,
+
+109
+00:04:49,083 --> 00:04:51,366
+the data is first segmented into frames.
+
+110
+00:04:51,650 --> 00:04:54,400
+Each data frame is then divided into time windows.
+
+111
+00:04:54,766 --> 00:04:57,683
+A feature vector is calculated for each time window.
+
+112
+00:04:58,050 --> 00:04:59,966
+Multiple time window feature vectors
+
+113
+00:05:00,000 --> 00:05:01,566
+form a feature matrix.
+
+114
+00:05:02,000 --> 00:05:03,366
+These feature vectors
+
+115
+00:05:03,400 --> 00:05:05,333
+comprise transient features with high variability
+
+116
+00:05:05,400 --> 00:05:08,283
+and steady-state features that are more stable.
+
+117
+00:05:09,683 --> 00:05:12,333
+Transient features are extracted using Fast Fourier Transform (FFT),
+
+118
+00:05:12,333 --> 00:05:15,450
+yielding amplitudes and phases corresponding to frequency indices.
+
+119
+00:05:15,566 --> 00:05:17,533
+According to electrical theory,
+
+120
+00:05:17,650 --> 00:05:22,450
+steady-state features consist of maximum, minimum, arithmetic mean,
+
+121
+00:05:22,483 --> 00:05:23,766
+RMS energy,
+
+122
+00:05:23,766 --> 00:05:25,600
+and crest factor, among others.
+
+123
+00:05:26,683 --> 00:05:29,050
+Additionally, the model uses an Embedding layer
+
+124
+00:05:29,050 --> 00:05:33,016
+to map discrete appliance types into continuous embedding vectors,
+
+125
+00:05:33,200 --> 00:05:35,850
+which form an integral part of the steady-state features.
+
+126
+00:05:36,850 --> 00:05:39,133
+Inspired by generative language models,
+
+127
+00:05:39,200 --> 00:05:42,050
+the feature matrix is treated as a "word embedding matrix."
+
+128
+00:05:43,250 --> 00:05:45,166
+Using six layers of Transformer Blocks
+
+129
+00:05:45,166 --> 00:05:47,483
+and subsequent attention pooling,
+
+130
+00:05:47,483 --> 00:05:48,850
+a prediction vector is generated.
+
+131
+00:05:49,933 --> 00:05:52,166
+Finally, inverse FFT is applied
+
+132
+00:05:52,333 --> 00:05:53,533
+to transform the frequency-domain vector
+
+133
+00:05:53,533 --> 00:05:56,600
+of transient features back into time-series data,
+
+134
+00:05:56,683 --> 00:05:58,050
+completing the prediction process.
+
+135
+00:05:59,133 --> 00:06:00,650
+Due to time constraints,
+
+136
+00:06:00,800 --> 00:06:03,966
+the equations and detailed calculations will not be elaborated here.
+
+137
+00:06:04,133 --> 00:06:06,800
+Please refer to the accompanying documentation and PPT for details.
+
+138
+00:06:07,983 --> 00:06:11,733
+As shown on the left, initial experimental results were less than ideal.
+
+139
+00:06:11,850 --> 00:06:12,800
+The root cause
+
+140
+00:06:12,800 --> 00:06:15,566
+was that the Transformer did not account for relationships
+
+141
+00:06:15,566 --> 00:06:19,050
+between internal features and feature dimensions at individual timesteps.
+
+142
+00:06:19,166 --> 00:06:20,966
+Adding fully connected layers
+
+143
+00:06:21,050 --> 00:06:23,200
+effectively resolved this issue.
+
+144
+00:06:25,400 --> 00:06:27,650
+This is the performance of our improved model
+
+145
+00:06:27,650 --> 00:06:29,533
+on the test dataset.
+
+146
+00:06:29,783 --> 00:06:33,733
+As seen, the predictive capability of the enhanced model improved significantly.
+
+147
+00:06:36,483 --> 00:06:39,000
+Next, I will demonstrate the project in action.
+
+148
+00:07:33,500 --> 00:07:35,550
+Part 3: Project Deployment
+
+149
+00:07:35,866 --> 00:07:38,300
+The system adopts a "distributed application, centralized computation"
+
+150
+00:07:38,416 --> 00:07:39,933
+cloud-based collaborative architecture.
+
+151
+00:07:40,266 --> 00:07:42,066
+The database serves as the "hub" of the system.
+
+152
+00:07:42,216 --> 00:07:44,900
+AI models are deployed in the compute network,
+
+153
+00:07:45,183 --> 00:07:47,133
+and smart meters act as edge devices.
+
+154
+00:07:47,266 --> 00:07:50,300
+The backend is distributed across neighborhoods or factories.
+
+155
+00:07:50,933 --> 00:07:52,133
+The design of the message queue (MQ)
+
+156
+00:07:52,216 --> 00:07:54,983
+alleviates the surge of requests from the distributed backend,
+
+157
+00:07:55,216 --> 00:07:57,383
+reduces the pressure on the GPU clusters,
+
+158
+00:07:57,533 --> 00:07:59,500
+and enhances the overall system performance.
+
+159
+00:08:00,100 --> 00:08:03,133
+This design is low-coupling and highly scalable,
+
+160
+00:08:03,333 --> 00:08:06,216
+aligning with modern software system design principles.
+
+161
+00:08:07,183 --> 00:08:08,216
+During development,
+
+162
+00:08:08,216 --> 00:08:10,616
+we used NVIDIA A100 GPUs
+
+163
+00:08:10,666 --> 00:08:14,083
+and Intel's 2nd Gen Neural Compute Sticks among other hardware devices.
+
+164
+00:08:14,533 --> 00:08:18,300
+The runtime environment is based on the Shanhe Supercomputing Platform
+
+165
+00:08:18,333 --> 00:08:23,383
+and includes SQLite, WeChat Mini Program, PyTorch, the C++ toolchain,
+
+166
+00:08:23,416 --> 00:08:25,500
+and RabbitMQ among other software.
+
+167
+00:08:26,650 --> 00:08:30,500
+Here, you can see the interface of our WeChat Mini Program client.
+
+168
+00:08:30,783 --> 00:08:33,383
+We primarily used the WeChat Developer Tools
+
+169
+00:08:33,416 --> 00:08:34,816
+for front-end development.
+
+170
+00:08:35,016 --> 00:08:40,183
+For waveform plotting, we utilized the line chart components provided by the ECharts library.
+
+171
+00:08:40,583 --> 00:08:44,700
+The backend program is built using the C++17 standard Web Server,
+
+172
+00:08:44,933 --> 00:08:47,100
+based on a single-reactor multi-threaded architecture.
+
+173
+00:08:47,783 --> 00:08:51,300
+The system core comprises modules for logging, thread pool management,
+
+174
+00:08:51,383 --> 00:08:54,066
+IO multiplexing, HTTP handling,
+
+175
+00:08:54,100 --> 00:08:57,583
+buffer management, and blocking queue management.
+
+176
+00:08:58,300 --> 00:09:02,016
+HTTP request messages are read using a scatter-read approach
+
+177
+00:09:02,300 --> 00:09:04,216
+and efficiently parsed
+
+178
+00:09:04,216 --> 00:09:06,583
+using finite state machines and regular expressions.
+
+179
+00:09:08,266 --> 00:09:10,066
+Finally, we conclude with a project summary.
+
+180
+00:09:10,616 --> 00:09:12,900
+Time flies, and months have passed.
+
+181
+00:09:13,066 --> 00:09:14,466
+Looking back on these months,
+
+182
+00:09:14,666 --> 00:09:17,683
+under the careful guidance of Professors Jia Ruixiang and Chen Jing,
+
+183
+00:09:17,900 --> 00:09:19,733
+the five of us worked diligently together,
+
+184
+00:09:19,783 --> 00:09:20,983
+learning through competition,
+
+185
+00:09:21,066 --> 00:09:22,100
+and gaining valuable insights.
+
+186
+00:09:22,466 --> 00:09:25,100
+We finally developed this large-scale system.
+
+187
+00:09:25,583 --> 00:09:27,783
+With that, our project presentation concludes.
+
+188
+00:09:28,016 --> 00:09:32,000
+We sincerely thank the judges for listening and providing feedback.
+
+
