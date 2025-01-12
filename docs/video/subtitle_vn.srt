@@ -1,0 +1,752 @@
+1
+00:00:00,766 --> 00:00:03,650
+Kính thưa các giám khảo, các thầy cô và các bạn học sinh, chào mọi người!
+
+2
+00:00:03,966 --> 00:00:05,083
+Dự án của chúng tôi là
+
+3
+00:00:05,083 --> 00:00:06,883
+Hệ thống phân loại và dự báo tải điện không xâm nhập
+
+4
+00:00:06,883 --> 00:00:10,200
+dựa trên thuật toán học sâu.
+
+5
+00:00:10,866 --> 00:00:13,883
+Tiếp theo, tôi sẽ giải thích chi tiết về dự án của chúng tôi.
+
+6
+00:00:15,600 --> 00:00:17,200
+Nhóm của chúng tôi đã phân công công việc hợp lý
+
+7
+00:00:17,200 --> 00:00:18,966
+và cùng nhau hoàn thành dự án này.
+
+8
+00:00:19,200 --> 00:00:22,883
+Tôi sẽ giới thiệu hệ thống từ các khía cạnh sau đây.
+
+9
+00:00:23,283 --> 00:00:25,933
+Trước tiên, hãy cùng nói về động lực thiết kế.
+
+10
+00:00:26,683 --> 00:00:29,483
+Phương pháp phân loại và dự báo tải điện không xâm nhập là
+
+11
+00:00:29,483 --> 00:00:32,200
+phân tích dữ liệu tổng tiêu thụ điện
+
+12
+00:00:32,200 --> 00:00:33,883
+mà không cần giám sát thiết bị cụ thể.
+
+13
+00:00:33,883 --> 00:00:37,083
+Điều này giúp suy ra và dự báo tình hình sử dụng điện của các thiết bị.
+
+14
+00:00:37,600 --> 00:00:38,800
+Như hình bên phải
+
+15
+00:00:38,966 --> 00:00:41,083
+hệ thống không cần cài đặt cảm biến trên dây nguồn của từng thiết bị.
+
+16
+00:00:41,083 --> 00:00:42,333
+Thay vào đó,
+
+17
+00:00:42,483 --> 00:00:45,483
+phân tích dữ liệu tổng điện năng tiêu thụ đầu vào
+
+18
+00:00:45,600 --> 00:00:48,166
+để suy ra tình trạng sử dụng của từng thiết bị.
+
+19
+00:00:48,483 --> 00:00:51,133
+Và dự báo tổng công suất tiêu thụ trong thời gian ngắn sắp tới.
+
+20
+00:00:53,000 --> 00:00:55,450
+Vậy tại sao cần công nghệ như vậy?
+
+21
+00:00:55,566 --> 00:00:57,533
+Các tổ chức chính phủ uy tín đã chỉ ra rằng
+
+22
+00:00:57,650 --> 00:00:59,683
+tại Trung Quốc và trên toàn thế giới,
+
+23
+00:00:59,733 --> 00:01:01,800
+hiện tượng lãng phí tài nguyên điện do điện năng tiêu thụ không cần thiết
+
+24
+00:01:01,800 --> 00:01:04,766
+như điện tiêu thụ khi chờ (chế độ chờ) ngày càng nghiêm trọng.
+
+25
+00:01:05,083 --> 00:01:07,800
+Bên cạnh đó, với sự phát triển của công nghệ lưới điện thông minh,
+
+26
+00:01:07,966 --> 00:01:10,600
+hệ thống phát hiện không xâm nhập, tiết kiệm chi phí
+
+27
+00:01:10,766 --> 00:01:14,050
+có thể đáp ứng nhu cầu của các đơn vị tiêu thụ và cung cấp điện.
+
+28
+00:01:14,966 --> 00:01:16,683
+Hơn nữa, hệ thống không xâm nhập
+
+29
+00:01:16,683 --> 00:01:19,400
+không cần hỗ trợ phần cứng cảm biến phức tạp,
+
+30
+00:01:19,683 --> 00:01:22,166
+do đó có chi phí thấp, độ tin cậy cao,
+
+31
+00:01:22,166 --> 00:01:23,450
+và dễ được người dùng chấp nhận.
+
+32
+00:01:24,133 --> 00:01:26,283
+Công nghệ này còn có nhiều ưu điểm khác.
+
+33
+00:01:26,283 --> 00:01:27,450
+Do thời gian có hạn,
+
+34
+00:01:27,450 --> 00:01:28,966
+chúng tôi không thể giải thích hết trong bài thuyết trình này.
+
+35
+00:01:29,733 --> 00:01:32,333
+Ngoài ra, sức mạnh tính toán của hệ thống mà chúng tôi phát triển
+
+36
+00:01:32,366 --> 00:01:35,533
+đến từ nền tảng tính toán siêu máy tính quốc gia Sơn Hà (Shanhe Sunway).
+
+37
+00:01:35,850 --> 00:01:38,800
+Đây là sự phản ánh của việc chính phủ thúc đẩy phát triển nền kinh tế số.
+
+38
+00:01:39,000 --> 00:01:41,333
+Là minh chứng cho việc đưa sức mạnh tính toán đến mọi nhà,
+
+39
+00:01:41,450 --> 00:01:44,083
+và tạo động lực cho mọi ngành nghề.
+
+40
+00:01:45,450 --> 00:01:49,083
+Tóm lại, dù là gia đình bình thường hay các doanh nghiệp, nhà máy,
+
+41
+00:01:49,200 --> 00:01:51,733
+đều cần một hệ thống và thuật toán thông minh
+
+42
+00:01:51,766 --> 00:01:54,650
+để giám sát tình trạng hoạt động của các thiết bị điện.
+
+43
+00:01:54,800 --> 00:01:56,683
+Nhận diện các tiêu thụ điện không cần thiết.
+
+44
+00:01:57,483 --> 00:01:59,283
+Điều này không chỉ giúp tiết kiệm năng lượng,
+
+45
+00:01:59,283 --> 00:01:00,800
+mà còn giảm chi phí điện năng.
+
+46
+00:02:01,800 --> 00:02:04,650
+Hệ thống cũng nên có khả năng dự báo tiêu thụ điện năng trong thời gian ngắn,
+
+47
+00:02:04,983 --> 00:02:08,483
+giúp doanh nghiệp có thể lập kế hoạch sử dụng điện một cách khoa học hơn.
+
+48
+00:02:09,200 --> 00:02:12,366
+Đặc biệt là khi thực hiện cơ chế giá điện bậc thang.
+
+49
+00:02:13,133 --> 00:02:14,250
+Vì vậy, hệ thống của chúng tôi
+
+50
+00:02:14,250 --> 00:02:16,933
+chủ yếu bao gồm các chức năng phân loại và dự báo.
+
+51
+00:02:17,200 --> 00:02:18,650
+Trong đó, chức năng phân loại
+
+52
+00:02:18,650 --> 00:02:20,083
+cung cấp cho người dùng thông tin về
+
+53
+00:02:20,133 --> 00:02:22,133
+tình trạng hoạt động của các thiết bị điện.
+
+54
+00:02:22,450 --> 00:02:24,183
+Chức năng dự báo sẽ ước tính
+
+55
+00:02:24,250 --> 00:02:27,533
+tình hình tiêu thụ điện năng của người dùng trong thời gian ngắn sắp tới.
+
+56
+00:02:28,200 --> 00:02:30,133
+Thứ hai, thiết kế thuật toán.
+
+57
+00:02:30,200 --> 00:02:33,000
+Hệ thống của chúng tôi sử dụng cấu trúc mô hình chuỗi liên kết,
+
+58
+00:02:33,050 --> 00:02:35,250
+bao gồm mô-đun phân giải phân loại
+
+59
+00:02:35,283 --> 00:02:36,800
+và mô-đun dự báo giá trị số.
+
+60
+00:02:37,083 --> 00:02:38,083
+Dữ liệu đầu vào
+
+61
+00:02:38,133 --> 00:02:41,566
+trước tiên sẽ được xử lý bằng mô-đun phân loại để gắn nhãn.
+
+62
+00:02:41,733 --> 00:02:42,533
+Sau đó,
+
+63
+00:02:42,533 --> 00:02:46,766
+dữ liệu và nhãn sẽ được đưa vào mô-đun dự báo số
+
+64
+00:02:46,883 --> 00:02:49,333
+để tạo ra giá trị dự báo công suất cuối cùng.
+
+65
+00:02:50,733 --> 00:02:53,050
+Dưới đây, tôi sẽ lần lượt giới thiệu từng phần
+
+66
+00:02:53,250 --> 00:02:55,133
+Đây là sơ đồ mô hình phân loại
+
+67
+00:02:55,483 --> 00:02:58,400
+Đầu tiên, dữ liệu đầu vào được xử lý bằng cách chia cửa sổ
+
+68
+00:02:58,533 --> 00:03:00,850
+Sau đó, các giá trị công suất được phân nhóm
+
+69
+00:03:01,250 --> 00:03:03,883
+Tiếp theo, thống kê số lượng mẫu trong mỗi cửa sổ thời gian
+
+70
+00:03:03,933 --> 00:03:05,800
+rơi vào các nhóm khác nhau
+
+71
+00:03:05,800 --> 00:03:07,366
+để thu được phân bố tần số
+
+72
+00:03:08,200 --> 00:03:09,766
+Để có được vectơ đặc trưng
+
+73
+00:03:09,766 --> 00:03:11,933
+chúng tôi chuẩn hóa tần số của mỗi cửa sổ thời gian
+
+74
+00:03:12,000 --> 00:03:13,683
+bằng cách chia cho độ dài cửa sổ
+
+75
+00:03:13,850 --> 00:03:15,200
+tức là chia cho chiều dài cửa sổ
+
+76
+00:03:15,600 --> 00:03:18,533
+Cuối cùng, chúng tôi sử dụng mạng nơ-ron kết nối đầy đủ
+
+77
+00:03:18,733 --> 00:03:21,566
+đầu vào là ma trận các vectơ đặc trưng từ các cửa sổ thời gian
+
+78
+00:03:21,883 --> 00:03:25,283
+và đầu ra là mã one-hot tương ứng với loại thiết bị
+
+79
+00:03:26,733 --> 00:03:28,050
+Trong quá trình tính toán trên
+
+80
+00:03:28,050 --> 00:03:30,166
+chúng tôi đã sử dụng cửa sổ thời gian ngắn
+
+81
+00:03:30,250 --> 00:03:32,450
+và nhiều nhóm giá trị công suất
+
+82
+00:03:32,883 --> 00:03:34,683
+Theo nguyên lý Dirichlet
+
+83
+00:03:34,733 --> 00:03:37,533
+sẽ có rất ít mẫu rơi vào một nhóm cụ thể
+
+84
+00:03:37,683 --> 00:03:40,650
+do đó ma trận đặc trưng sẽ rất thưa thớt
+
+85
+00:03:40,683 --> 00:03:42,850
+và không thể đưa trực tiếp vào mạng nơ-ron
+
+86
+00:03:43,283 --> 00:03:46,533
+Cần phải xử lý nén bằng thuật toán phân tích thành phần chính (PCA)
+
+87
+00:03:47,050 --> 00:03:49,733
+Thuật toán giữ lại 96% phương sai
+
+88
+00:03:49,933 --> 00:03:54,200
+nén hiệu quả 660 chiều đặc trưng xuống còn 17 chiều
+
+89
+00:03:54,800 --> 00:03:57,733
+biến ma trận đặc trưng thành ma trận dày đặc
+
+90
+00:03:58,800 --> 00:04:00,000
+Khi lựa chọn mô hình
+
+91
+00:04:00,000 --> 00:04:03,250
+chúng tôi so sánh hiệu suất của mạng kết nối đầy đủ và GRU
+
+92
+00:04:03,283 --> 00:04:05,133
+(Đơn vị tuần hoàn có cổng)
+
+93
+00:04:05,450 --> 00:04:07,333
+Sau khi điều chỉnh siêu tham số
+
+94
+00:04:07,483 --> 00:04:12,366
+cả hai đạt được độ chính xác cao nhất lần lượt là 91% và 90%
+
+95
+00:04:13,050 --> 00:04:14,766
+Tuy nhiên, thử nghiệm triển khai cho thấy
+
+96
+00:04:14,966 --> 00:04:17,650
+GRU do phải quan tâm đến các cửa sổ thời gian khác
+
+97
+00:04:17,800 --> 00:04:20,566
+nên tiêu thụ năng lượng suy luận cao hơn đáng kể so với mạng kết nối đầy đủ
+
+98
+00:04:20,650 --> 00:04:22,166
+Do đó, chúng tôi chọn mạng kết nối đầy đủ
+
+99
+00:04:22,933 --> 00:04:25,483
+Tiếp theo, tôi sẽ giới thiệu về mô hình dự đoán công suất
+
+100
+00:04:25,483 --> 00:04:27,400
+Hình bên phải minh họa dạng sóng công suất của cùng một thiết bị
+
+101
+00:04:27,400 --> 00:04:29,683
+trong các khoảng thời gian khác nhau
+
+102
+00:04:30,166 --> 00:04:33,400
+Dữ liệu có tính quy luật cao ở mức độ vĩ mô
+
+103
+00:04:34,250 --> 00:04:36,600
+Nhưng lại không có quy luật ở mức độ vi mô
+
+104
+00:04:37,133 --> 00:04:39,683
+Chính các yếu tố không chắc chắn bên ngoài
+
+105
+00:04:39,733 --> 00:04:42,566
+Đã tạo ra thách thức cho dự đoán công suất ngắn hạn
+
+106
+00:04:43,800 --> 00:04:45,366
+Để giải quyết vấn đề này
+
+107
+00:04:45,366 --> 00:04:47,650
+Chúng tôi đã thiết kế cấu trúc mô hình như sau
+
+108
+00:04:47,733 --> 00:04:49,083
+Khi xử lý dữ liệu
+
+109
+00:04:49,083 --> 00:04:51,366
+Đầu tiên, dữ liệu được chia thành các khung
+
+110
+00:04:51,650 --> 00:04:54,400
+Sau đó, mỗi khung dữ liệu được chia thành các cửa sổ
+
+111
+00:04:54,766 --> 00:04:57,683
+Mỗi cửa sổ thời gian sẽ tính toán một vectơ đặc trưng
+
+112
+00:04:58,050 --> 00:04:59,966
+Các vectơ đặc trưng từ nhiều cửa sổ thời gian
+
+113
+00:05:00,000 --> 00:05:01,566
+Hợp thành một ma trận đặc trưng
+
+114
+00:05:02,000 --> 00:05:03,366
+Các vectơ đặc trưng này
+
+115
+00:05:03,400 --> 00:05:05,333
+Bao gồm hai phần: đặc trưng tạm thời biến động lớn
+
+116
+00:05:05,400 --> 00:05:08,283
+Và đặc trưng ổn định không dễ thay đổi
+
+117
+00:05:09,683 --> 00:05:12,333
+Đặc trưng tạm thời được biến đổi Fourier nhanh
+
+118
+00:05:12,333 --> 00:05:15,450
+Để thu được biên độ và pha tương ứng với các tần số
+
+119
+00:05:15,566 --> 00:05:17,533
+Theo lý thuyết điện học liên quan
+
+120
+00:05:17,650 --> 00:05:22,450
+Đặc trưng ổn định bao gồm giá trị lớn nhất, nhỏ nhất, giá trị trung bình số học
+
+121
+00:05:22,483 --> 00:05:23,766
+Giá trị hiệu dụng năng lượng
+
+122
+00:05:23,766 --> 00:05:25,600
+Hệ số đỉnh, v.v.
+
+123
+00:05:26,683 --> 00:05:29,050
+Ngoài ra, mô hình sử dụng lớp Embedding
+
+124
+00:05:29,050 --> 00:05:33,016
+Để ánh xạ các loại thiết bị điện rời rạc thành các vectơ nhúng liên tục
+
+125
+00:05:33,200 --> 00:05:35,850
+Là một phần quan trọng của đặc trưng ổn định
+
+126
+00:05:36,850 --> 00:05:39,133
+Lấy cảm hứng từ mô hình ngôn ngữ sinh
+
+127
+00:05:39,200 --> 00:05:42,050
+Ma trận đặc trưng được coi là "ma trận nhúng từ"
+
+128
+00:05:43,250 --> 00:05:45,166
+Thông qua 6 lớp Transformer Block
+
+129
+00:05:45,166 --> 00:05:47,483
+Và xử lý trung bình hóa chú ý tiếp theo
+
+130
+00:05:47,483 --> 00:05:48,850
+Tạo ra vectơ dự đoán
+
+131
+00:05:49,933 --> 00:05:52,166
+Cuối cùng, thông qua biến đổi Fourier ngược
+
+132
+00:05:52,333 --> 00:05:53,533
+Phần vectơ tần số trong đặc trưng tạm thời
+
+133
+00:05:53,533 --> 00:05:56,600
+Được chuyển đổi thành chuỗi thời gian
+
+134
+00:05:56,683 --> 00:05:58,050
+Từ đó hoàn thành dự đoán
+
+135
+00:05:59,133 --> 00:06:00,650
+Do thời gian có hạn
+
+136
+00:06:00,800 --> 00:06:03,966
+Công thức và quá trình tính toán cụ thể sẽ không được trình bày chi tiết
+
+137
+00:06:04,133 --> 00:06:06,800
+Kính mời các thầy cô tham khảo trong tài liệu và PPT
+
+138
+00:06:07,983 --> 00:06:11,733
+Như hình bên trái, kết quả thí nghiệm ban đầu không được như mong đợi
+
+139
+00:06:11,850 --> 00:06:12,800
+Nguyên nhân là do
+
+140
+00:06:12,800 --> 00:06:15,566
+Transformer không chú ý đến mối quan hệ giữa các đặc trưng bên trong một bước thời gian
+
+141
+00:06:15,566 --> 00:06:19,050
+Và mối quan hệ giữa các chiều của đặc trưng
+
+142
+00:06:19,166 --> 00:06:20,966
+Việc thêm mạng kết nối đầy đủ
+
+143
+00:06:21,050 --> 00:06:23,200
+Có thể giải quyết tốt vấn đề này
+
+144
+00:06:25,400 --> 00:06:27,650
+Đây là mô hình của chúng tôi sau khi được cải tiến
+
+145
+00:06:27,650 --> 00:06:29,533
+Hiệu quả trên tập kiểm tra
+
+146
+00:06:29,783 --> 00:06:33,733
+Có thể thấy, khả năng dự đoán của mô hình cải tiến đã được cải thiện đáng kể
+
+147
+00:06:36,483 --> 00:06:39,000
+Tiếp theo, tôi sẽ tiến hành trình diễn dự án
+
+148
+00:07:33,500 --> 00:07:35,550
+Phần thứ ba, triển khai dự án
+
+149
+00:07:35,866 --> 00:07:38,300
+Hệ thống áp dụng kiến trúc hợp tác đám mây
+
+150
+00:07:38,416 --> 00:07:39,933
+"phân tán ứng dụng, tập trung tính toán"
+
+151
+00:07:40,266 --> 00:07:42,066
+Cơ sở dữ liệu là "trung tâm" của hệ thống
+
+152
+00:07:42,216 --> 00:07:44,900
+Mô hình AI được triển khai trên mạng lưới tính toán
+
+153
+00:07:45,183 --> 00:07:47,133
+Công tơ điện là thiết bị biên
+
+154
+00:07:47,266 --> 00:07:50,300
+Backend được phân bố tại các khu dân cư hoặc nhà máy
+
+155
+00:07:50,933 --> 00:07:52,133
+Thiết kế Hàng đợi tin nhắn (MQ)
+
+156
+00:07:52,216 --> 00:07:54,983
+Đã làm giảm đỉnh yêu cầu từ backend phân tán
+
+157
+00:07:55,216 --> 00:07:57,383
+Giảm áp lực lên cụm GPU
+
+158
+00:07:57,533 --> 00:07:59,500
+Nâng cao hiệu suất tổng thể của hệ thống
+
+159
+00:08:00,100 --> 00:08:03,133
+Thiết kế này có độ kết hợp thấp và dễ dàng mở rộng
+
+160
+00:08:03,333 --> 00:08:06,216
+Phù hợp với mô hình thiết kế hệ thống phần mềm hiện đại
+
+161
+00:08:07,183 --> 00:08:08,216
+Trong quá trình phát triển dự án
+
+162
+00:08:08,216 --> 00:08:10,616
+Chúng tôi đã sử dụng GPU NVIDIA A100
+
+163
+00:08:10,666 --> 00:08:14,083
+Và Intel Neural Compute Stick (Intel Cây Tính Toán Thần Kinh) thế hệ thứ 2
+
+164
+00:08:14,533 --> 00:08:18,300
+Môi trường chạy dự án dựa trên nền tảng siêu máy tính Sơn Hà (Shanhe Sunway)
+
+165
+00:08:18,333 --> 00:08:23,383
+Cùng với SQLite, WeChat Mini Program, PyTorch, Chuỗi công cụ C++ (C++ toolchain)
+
+166
+00:08:23,416 --> 00:08:25,500
+Và phần mềm Rabbit MQ
+
+167
+00:08:26,650 --> 00:08:30,500
+Hiện tại, chúng tôi đang hiển thị giao diện khách hàng trên Ứng Dụng Mini WeChat (WeChat Mini Program)
+
+168
+00:08:30,783 --> 00:08:33,383
+Chúng tôi chủ yếu sử dụng công cụ phát triển WeChat
+
+169
+00:08:33,416 --> 00:08:34,816
+Để phát triển frontend
+
+170
+00:08:35,016 --> 00:08:40,183
+Vẽ biểu đồ, sử dụng thành phần biểu đồ đường của thư viện ECharts
+
+171
+00:08:40,583 --> 00:08:44,700
+Chương trình backend sử dụng Web Server được xây dựng theo tiêu chuẩn C++17
+
+172
+00:08:44,933 --> 00:08:47,100
+Dựa trên kiến trúc đơn Reactor đa luồng
+
+173
+00:08:47,783 --> 00:08:51,300
+Lõi hệ thống bao gồm ghi nhật ký, quản lý bể luồng
+
+174
+00:08:51,383 --> 00:08:54,066
+Đa hợp IO, xử lý HTTP
+
+175
+00:08:54,100 --> 00:08:57,583
+Quản lý bộ đệm và hàng đợi chặn
+
+176
+00:08:58,300 --> 00:09:02,016
+Thông báo yêu cầu HTTP được đọc theo cách đọc phân tán
+
+177
+00:09:02,300 --> 00:09:04,216
+Và được phân tích hiệu quả bằng máy trạng thái hữu hạn
+
+178
+00:09:04,216 --> 00:09:06,583
+Và biểu thức chính quy
+
+179
+00:09:08,266 --> 00:09:10,066
+Cuối cùng là tổng kết dự án
+
+180
+00:09:10,616 --> 00:09:12,900
+Thời gian trôi qua nhanh chóng
+
+181
+00:09:13,066 --> 00:09:14,466
+Nhìn lại vài tháng qua
+
+182
+00:09:14,666 --> 00:09:17,683
+Dưới sự hướng dẫn tận tình của thầy Giả Thụy Tường (JIA Ruixiang) và cô Trần Tĩnh (CHEN Jing)
+
+183
+00:09:17,900 --> 00:09:19,733
+Tháng chúng tôi đã hợp tác chặt chẽ
+
+184
+00:09:19,783 --> 00:09:20,983
+Học hỏi thông qua cuộc thi
+
+185
+00:09:21,066 --> 00:09:22,100
+Thu được nhiều kinh nghiệm
+
+186
+00:09:22,466 --> 00:09:25,100
+Cuối cùng đã phát triển thành công hệ thống có quy mô không nhỏ
+
+187
+00:09:25,583 --> 00:09:27,783
+Đến đây, báo cáo dự án của chúng tôi xin được kết thúc
+
+188
+00:09:28,016 --> 00:09:32,000
+Chân thành cảm ơn sự lắng nghe và chỉ dẫn của các thầy cô giám khảo!
+
